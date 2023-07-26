@@ -1,0 +1,20 @@
+{
+  "name": "node_as2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "joi": "^17.9.2",
+    "mongoose": "^7.4.1",
+    "vite": "^4.4.7",
+    "vite-plugin-node": "^3.0.2"
+  }
+}

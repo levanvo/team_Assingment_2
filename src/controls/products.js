@@ -41,3 +41,11 @@ export const updatePr = async (req, res) => {
         return res.status(400).json({ message: "updatePr failed ===>", error });
     };
 };
+export const removePr = async (req, res) => {
+    try {
+        const data = await SchemaProducts.findByIdAndDelete(res.params.id);
+        return res.status(200).json({ message: "removePr one products ===>", data });
+    } catch (error) {
+        return res.status(400).json({ message: "removePr failed ===>", error });
+    };
+};

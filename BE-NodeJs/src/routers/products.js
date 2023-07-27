@@ -9,5 +9,4 @@ router.post(`/products`, CheckMission ,addPr);
 router.put(`/products/:id`, CheckMission,updatePr);
 router.delete(`/products/:id`, CheckMission,removePr);
 
-
 export default router;

@@ -3,6 +3,7 @@ import joi from "joi";
 
 const JoiProducts = joi.object({
     name: joi.string().required(),
+    image: joi.string().required(),
     price: joi.number().required(),
     quantity: joi.number().required(),
 });
@@ -35,7 +36,7 @@ export const updatePr = async (req, res) => {
         const { error } = await JoiProducts.validate(body);
         if (error) { return res.json(error.details[0].message) };
         // update
-        const data = await SchemaProducts.findByIdAndUpdate(res.params.id,body,{new:true});
+        const data = await SchemaProducts.findByIdAndUpdate(req.params.id,body,{new:true});
         return res.status(200).json({ message: "updatePr one products ===>", data });
     } catch (error) {
         return res.status(400).json({ message: "updatePr failed ===>", error });
@@ -43,7 +44,7 @@ export const updatePr = async (req, res) => {
 };
 export const removePr = async (req, res) => {
     try {
-        const data = await SchemaProducts.findByIdAndDelete(res.params.id);
+        const data = await SchemaProducts.findByIdAndDelete(req.params.id);
         return res.status(200).json({ message: "removePr one products ===>", data });
     } catch (error) {
         return res.status(400).json({ message: "removePr failed ===>", error });

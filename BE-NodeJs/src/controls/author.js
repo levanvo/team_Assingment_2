@@ -25,19 +25,18 @@ const Joi_Signup = joi.object({
     }),
 });
 
-// 
 const Joi_Signin = joi.object({
-    email:joi.string().required().email().messages({
-        "string.empty":"Thiếu trường email",
-        "any.required":"Bắt buộc nhập email",
-        "string.email":"Không đúng kiểu email!"
+    email: joi.string().required().email().messages({
+        "string.empty": "Thiếu trường email",
+        "any.required": "Bắt buộc nhập email",
+        "string.email": "không đúng kiểu email !"
     }),
-    pass:joi.string().required().min(3).messages({
-        "string.empty":"Thiếu trường pass",
-        "any.required":"Bắt buộc nhập pass",
-        "string.min":"Tối thiểu {#limit} kí tự trở lên"
+    pass: joi.string().required().min(3).messages({
+        "string.empty": "Thiếu trường pass",
+        "any.required": "Bắt buộc nhập pass",
+        "string.min": "Tối thiểu {#limit} kí tự trở lên"
     }),
-})
+});
 
 
 export const Signup = async (req, res) => {
@@ -66,12 +65,14 @@ export const Signup = async (req, res) => {
 }
 export const Signin = async (req, res) => {
     try {
-        const body = req.body; 
-        const {error} = await Joi_Signin.validate(body,{abortEarly:false});
-        if(error){
+        const body = req.body;
+
+        const { error } = await Joi_Signin.validate(body, { abortEarly: false });
+        if (error) {
             const getError = error.details.map(t => t.message);
             return res.json(getError);
-        }
+        };
+
         const CheckEmail = await SchemaAuthor.findOne({ email: body.email });
         if (!CheckEmail) {
             return res.status(401).json("Email không tồn tại hoặc chưa đăng kí");

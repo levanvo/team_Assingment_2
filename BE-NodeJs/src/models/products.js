@@ -13,7 +13,8 @@ const SchemaProducts = mongoose.Schema(
         quantity:{
             type:Number,
             required:true,
-        }
+        },
+        image:String
     },
     { timestamps: true, versionKey: false }
 );

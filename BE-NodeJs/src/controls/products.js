@@ -6,6 +6,7 @@ const JoiProducts = joi.object({
     image: joi.string().required(),
     price: joi.number().required(),
     quantity: joi.number().required(),
+    description:joi.string().required()
 });
 
 export const getAllPr = async (req, res) => {
@@ -40,6 +41,17 @@ export const updatePr = async (req, res) => {
         return res.status(200).json({ message: "updatePr one products ===>", data });
     } catch (error) {
         return res.status(400).json({ message: "updatePr failed ===>", error });
+    };
+};
+export const getOnePr = async (req, res) => {
+    try {
+        const data = await SchemaProducts.findOne({_id:req.params.id});
+        if(!data){
+             return res.status(400).json({ message: "No Products" });
+        }
+        return res.status(200).json({ message: "get one products ===>", data });
+    } catch (error) {
+        return res.status(400).json({ message: "get one failed ===>", error });
     };
 };
 export const removePr = async (req, res) => {

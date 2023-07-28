@@ -14,6 +14,10 @@ const SchemaProducts = mongoose.Schema(
             type:Number,
             required:true,
         },
+        description:{
+            type:String,
+            required:true
+        },
         image:String
     },
     { timestamps: true, versionKey: false }

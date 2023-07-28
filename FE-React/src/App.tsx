@@ -1,29 +1,24 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { instance } from './api/instance'
-import { useAppDispatch, useAppSelector } from './store/useHookProducts'
-import { getProduct } from './slices/sliceProducts'
+import { useAppDispatch, useAppSelector } from "./store/useHookProducts";
+import { addProduct, getProduct, removeProduct, updateProduct } from "./slice/sliceProducts";
 
 function App() {
   const dispatch = useAppDispatch();
-  const { products, isLoading, error }: any = useAppSelector((state: any) => state.products);
+  const { products, isLoading, error } = useAppSelector((state: any) => state.products);
   console.log(products);
-
+  
   useEffect(() => {
-    dispatch(getProduct);
-    async function a() {
-      const { data } = await instance.get("/products");
-      console.log(data.data);
-    }
-    a();
+    dispatch(getProduct());
   }, []);
+
   return (
     <div className="">
-
+      
     </div>
-  )
+  );
 }
 
 export default App

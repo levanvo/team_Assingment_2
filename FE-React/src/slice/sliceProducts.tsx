@@ -1,4 +1,4 @@
-import { createSlice ,createAsyncThunk} from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { instance } from '../api/instance';
 
 const initialState: any = {
@@ -9,12 +9,10 @@ export const getProduct = createAsyncThunk(
     'product/getProduct',
     async () => {
         try {
-            console.log("hello");
             const { data } = await instance.get(`/products`);
-            console.log("hello");
+            // console.log(data.data);
             return data.data;
-        } catch (error) {
-        }
+        } catch (error) { }
     }
 );
 export const addProduct = createAsyncThunk(
@@ -53,7 +51,7 @@ const productSlice = createSlice({
     // rerender
     extraReducers: (builder) => {
         builder.addCase(getProduct.fulfilled, (state, action) => {
-            console.log("hello");
+            
             state.products = action.payload
         })
         builder.addCase(addProduct.fulfilled, (state, action) => {
@@ -61,11 +59,11 @@ const productSlice = createSlice({
         })
         builder.addCase(updateProduct.fulfilled, (state, action) => {
             const product: any = action.payload
-            state.products = state.products.map((item: any) => item.id == product.id ? product : item)
+            state.products = state.products.map((item: any) => item.id === product.id ? product : item)
         })
         builder.addCase(removeProduct.fulfilled, (state, action) => {
             const id = action.payload;
-            state.products = state.products.filter((item: any) => item.id != id)
+            state.products = state.products.filter((item: any) => item.id !== id)
         })
     }
 })

@@ -5,7 +5,7 @@ import { addPr, getAllPr, getOnePr, removePr, updatePr } from "../controls/produ
 const router=express.Router();
 
 router.get(`/products`,getAllPr);
-rputer.get(`/products/:id`,getOnePr)
+router.get(`/products/:id`,getOnePr)
 router.post(`/products`,addPr);//1
 router.put(`/products/:id`,updatePr);//2
 router.delete(`/products/:id`,removePr);//3

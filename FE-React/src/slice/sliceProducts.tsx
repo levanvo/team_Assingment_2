@@ -51,14 +51,13 @@ const productSlice = createSlice({
     // rerender
     extraReducers: (builder) => {
         builder.addCase(getProduct.fulfilled, (state, action) => {
-            
             state.products = action.payload
         })
         builder.addCase(addProduct.fulfilled, (state, action) => {
-            state.products.push(action.payload)
+            state.products.push(action.payload.data)
         })
         builder.addCase(updateProduct.fulfilled, (state, action) => {
-            const product: any = action.payload
+            const product: any = action.payload.data
             state.products = state.products.map((item: any) => item.id === product.id ? product : item)
         })
         builder.addCase(removeProduct.fulfilled, (state, action) => {

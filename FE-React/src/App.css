@@ -84,3 +84,45 @@ body{
   z-index: 11;
   opacity: 1;
 }
+
+.FormDetail {
+  position: fixed;
+  top:0;
+  right: -30%;
+  z-index: -1;
+  opacity: 0;
+  width: 400px;
+  height: 100vh;
+  background: #eaeaea;
+}
+
+.displayDetails{
+  position: fixed;
+  z-index: -1;
+  top: -800px;
+  width: 100%;
+  height: 100%;
+  
+}
+.putDetails:checked~.FormDetail {
+  z-index: 2;
+  right: 0;
+  opacity: 1;
+  right: 0;
+}
+.canCel{
+  position: absolute;
+  scale: 1.7;
+}
+.putDetails:checked ~ .displayDetails{
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background: rgba(30, 30, 30, 0.5);
+}
+.bg-Detail{
+  background: linear-gradient(45deg,white,rgb(234, 237, 239),rgb(117, 198, 255));
+}
+.scrollBar{
+  overflow-y: scroll;
+}

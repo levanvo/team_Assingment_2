@@ -1,7 +1,6 @@
 import React from 'react'
 import { useAppSelector, useAppDispatch } from "../store/useHookProducts";
 import { VscSettings } from "react-icons/vsc"
-import { addProduct } from '@/slice/sliceProducts';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
@@ -9,7 +8,6 @@ const Home = () => {
     console.log(products);
     const dispatch = useAppDispatch();
 
-    
     return (
         <div>
             <div className="mt-5">
@@ -18,11 +16,9 @@ const Home = () => {
                         <span className=''><VscSettings /></span>
                     </button>
                 </Link>
-
             </div>
-            <div className="w-[90vw] mx-auto mt-10">
-                
-                <p className='text-center text-gray-600 font-bold  text-4xl'>Collection to about science books</p>
+            <div className="w-[90vw] mx-auto mt-10 non-selectable">
+                <p className='text-center text-gray-600 font-bold  text-4xl  '>Collection to about science books</p>
                 <div className="flex justify-center flex-wrap space-x-5">
                     {products?.map((items: any) => (
                         <div className="text-black m-5 w-[180px] h-[244px] bg-gray-100 rounded-md" key={items._id}>

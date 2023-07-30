@@ -49,7 +49,7 @@ const Management = () => {
                     <form onSubmit={() => AddPr()} className='mt-5'>
                         <p className='ml-3'>Name:</p>
                         <input type="text" name='name' onChange={() => HandleChange(event)} className='outline-0 shadow-inner shadow-gray-400 p-1 ml-5 w-[360px]' />
-                        <p className='ml-3'>Image:</p>
+                        <p className='ml-3'>Image:  <span className='picsumText text-red-500'>(default choose image of picsum)</span></p>
                         <input type="file" name='image' className='p-1 inPutImage ml-5 w-[360px]' />
                         <p className='ml-3'>Price:</p>
                         <input type="number" name='price' onChange={() => HandleChange(event)} className='outline-0 shadow-inner shadow-gray-400 p-1 ml-5 w-[360px]' />

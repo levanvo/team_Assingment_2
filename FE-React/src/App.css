@@ -1,25 +1,41 @@
-body{
+body {
   background: #ffffff;
   color: white;
 }
-.management{
+
+.management {
   /* border: 5px solid rgb(191, 191, 191); */
-  background: linear-gradient(45deg,#ededed,rgb(0, 0, 0),rgb(255, 255, 255));
+  background: linear-gradient(45deg, #ededed, rgb(0, 0, 0), rgb(255, 255, 255));
   transition: all 0.1s;
   text-shadow: 1px 1px 1px rgb(31, 31, 31);
 }
-.textSmall{
+.textDetails{font-family: cursive;}
+.textSmall {
   font-size: 12px;
 }
-.scaleHome{transform: scale(3);}
-.scaleHome:active{transform: scale(2.5);}
-.non-selectable {
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE10+/Edge */
-  user-select: none; /* phiên bản chuẩn */
+.tbodyManager:hover{
+  background: #ffffff3a;
 }
-.FormAddPr{
+.scaleHome {
+  transform: scale(3);
+}
+
+.scaleHome:active {
+  transform: scale(2.5);
+}
+
+.non-selectable {
+  -webkit-user-select: none;
+  /* Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE10+/Edge */
+  user-select: none;
+  /* phiên bản chuẩn */
+}
+
+.FormAddPr {
   position: fixed;
   top: 10%;
   left: 37%;
@@ -27,28 +43,33 @@ body{
   opacity: 0;
   z-index: -1;
   width: 400px;
-  height:550px;
+  height: 550px;
   background-color: rgb(235, 235, 235);
 }
-.display{
+
+.display {
   position: fixed;
   top: 0;
   width: 100%;
   height: 100%;
   z-index: -1;
 }
- #okdi:checked ~ .display{
+
+#okdi:checked~.display {
   z-index: 1;
-  background: rgba(213, 213, 213, 0.251);
- }
-#okdi:checked ~ .FormAddPr{
+  background: rgba(85, 85, 85, 0.251);
+}
+
+#okdi:checked~.FormAddPr {
   scale: 1;
   z-index: 11;
   opacity: 1;
 }
-.inPutImage{
+
+.inPutImage {
   border: 1px dashed gray;
 }
+
 .picsumText {
   font-size: 12px;
 }
@@ -125,4 +146,17 @@ body{
 }
 .scrollBar{
   overflow-y: scroll;
+}
+.appBG{
+  position: static;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  background-image: url(https://duhocchaudaiduong.edu.vn/hinh-nen-dep-cho-website/imager_3_2820_700.jpg);
+  background-size: 100% 100%;
+}
+.navbar{
+  top: 1%;
+  position: fixed;
+  background: rgba(251, 251, 251, 0.852);
 }

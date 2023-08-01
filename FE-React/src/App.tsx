@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "./store/useHookProducts";
 import { addProduct, getProduct, removeProduct, updateProduct } from "./slice/sliceProducts";
 import Home from "./page/Home";
 import Management from './page/Management';
+import Authoziration from './page/Authoziration';
 
 
 
@@ -18,15 +19,17 @@ function App() {
   useEffect(() => {
     dispatch(getProduct());
   }, []);
-
   return (
-    <div className="">
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='management' element={<Management />} />
-        </Routes>
-      </BrowserRouter>
+    <div className="appBG">
+      <div className="">
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='authoziration' element={<Authoziration />} />
+            <Route path='management' element={<Management />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </div>
   );
 }

@@ -16,10 +16,10 @@ export const getProduct = createAsyncThunk(
 );
 export const addProduct = createAsyncThunk(
     'product/addProduct',
-    async (product:any) => {
+    async (product: any) => {
         try {
             const { data } = await instance.post(`/products`, product);
-            alert("Added products: "+ `"${product.name}"`)
+            alert("Added products: " + `"${product.name}"`)
             return data;
         } catch (error) { }
     }
@@ -28,9 +28,21 @@ export const updateProduct = createAsyncThunk(
     'product/updateProduct',
     async (product: any) => {
         try {
-            const { data } = await instance.patch(`/products/${product.id}`, product);
+            const id=product._id;
+            const objectPr = {
+                name: product.name,
+                image: product.image,
+                price: product.price,
+                quantity: product.quantity,
+                description: product.description,
+                // createdAt:product.createdAt,
+                // updatedAt:product.updatedAt,
+            };
+            const { data } = await instance.put(`/products/${id}`, objectPr);
             return data;
-        } catch (error) { }
+        } catch (error) {
+            console.log(error);
+        };
     }
 );
 export const removeProduct = createAsyncThunk(
@@ -59,8 +71,8 @@ const productSlice = createSlice({
             state.products.push(action.payload.data)
         })
         builder.addCase(updateProduct.fulfilled, (state, action) => {
-            const product: any = action.payload.data
-            state.products = state.products.map((item: any) => item._id == product.id ? product : item)
+            const product: any = action.meta.arg
+            state.products = state.products.map((item: any) => item._id == product._id ? product : item)
         })
         builder.addCase(removeProduct.fulfilled, (state, action) => {
             const id = action.payload;

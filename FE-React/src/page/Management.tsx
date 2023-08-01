@@ -23,9 +23,12 @@ const Management = () => {
         const { name, value } = event.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
-    const AddPr = () => {
+    const AddPr = (e: any) => {
+        // e.preventDefault();
         if (Object.keys(formData).some(key1 => formData[key1] == "")) {
             alert("Form empty or missing something ??");
+        } else if (formData.name == " " || formData.description == " ") {
+            alert("No spaces !")
         } else {
             dispatch(addProduct(formData));
         };
@@ -34,13 +37,15 @@ const Management = () => {
         const { name, value } = event.target;
         setFormData2((prevData) => ({ ...prevData, [name]: value }));
     };
-    const UpdatePr1 = async (data:Products) => {
+    const UpdatePr1 = async (data: Products) => {
         setFormData2(data)
     };
-    const UpdatePr2 = async (e:any) => {
+    const UpdatePr2 = async (e: any) => {
         // e.preventDefault();
         if (Object.keys(formData2).some(key1 => formData2[key1] == "")) {
             alert("Form empty or missing something ??");
+        } else if (formData.name == " " || formData.description == " ") {
+            alert("No spaces !")
         } else {
             dispatch(updateProduct(formData2));
         };
@@ -49,7 +54,7 @@ const Management = () => {
         dispatch(removeProduct(_id));
     };
     return (
-        <div className='text-black non-selectable'>
+        <div className='text-black non-selectable mx-auto'>
             <Link to={`/`}><button className='scaleHome ml-[3%] mt-[2%]'><FcHome /></button></Link>
             <p className='text-4xl text-center font-medium mb-3  '>Control-Shop</p>
             <div className="flex justify-end">
@@ -57,15 +62,15 @@ const Management = () => {
                 <label htmlFor="okdi" className=' cursor-pointer active:scale-90 text-green-600 font-medium mr-[10%] underline mb-2 hover:text-green-500'>Add new</label>
                 <div className="FormAddPr duration-200">
                     <p className='text-center text-white text-lg'><span className='bg-gray-700 text-xl rounded-b-xl pr-4 pl-4 pb-1'>Add product new</span></p>
-                    <form onSubmit={() => AddPr()} className='mt-5'>
+                    <form onSubmit={() => AddPr(event)} className='mt-5'>
                         <p className='ml-3'>Name:</p>
-                        <input type="text" name='name' onChange={() => HandleChangeAdd(event)} className='outline-0 shadow-inner shadow-gray-400 p-1 ml-5 w-[360px]' />
+                        <input type="text" name='name' maxLength={20} onChange={() => HandleChangeAdd(event)} className='outline-0 shadow-inner shadow-gray-400 p-1 ml-5 w-[360px]' />
                         <p className='ml-3'>Image: <span className='picsumText text-red-500'>(default choose image of picsum)</span></p>
                         <input type="file" name='image' className='p-1 inPutImage ml-5 w-[360px]' />
                         <p className='ml-3'>Price:</p>
-                        <input type="number" name='price' onChange={() => HandleChangeAdd(event)} className='outline-0 shadow-inner shadow-gray-400 p-1 ml-5 w-[360px]' />
+                        <input type="number" name='price' maxLength={5} onChange={() => HandleChangeAdd(event)} className='outline-0 shadow-inner shadow-gray-400 p-1 ml-5 w-[360px]' />
                         <p className='ml-3'>Quantity:</p>
-                        <input type="number" name='quantity' onChange={() => HandleChangeAdd(event)} className='outline-0 shadow-inner shadow-gray-400 p-1 ml-5 w-[360px]' />
+                        <input type="number" name='quantity' maxLength={5} onChange={() => HandleChangeAdd(event)} className='outline-0 shadow-inner shadow-gray-400 p-1 ml-5 w-[360px]' />
                         <p className='ml-3'>Description:</p>
                         <textarea name='description' onChange={() => HandleChangeAdd(event)} className='outline-0 shadow-inner shadow-gray-400 p-1 ml-5 w-[360px] h-28'></textarea>
 
@@ -77,7 +82,7 @@ const Management = () => {
                 <label htmlFor='okdi' className="display"></label>
             </div>
             <div className="">
-                <table className='w-[90vw] text-center mx-auto mb-10'>
+                <table className='w-[90vw] text-center mx-auto'>
                     <thead>
                         <tr className=' font-bold bg-gray-500 text-white  '>
                             <th>#</th>
@@ -91,13 +96,13 @@ const Management = () => {
                     </thead>
                     <tbody>
                         {products?.map((items: any, susi: any) => (
-                            <tr key={items._id} className='hover:bg-gray-200'>
+                            <tr key={items._id} className='tbodyManager'>
                                 <td className='text-gray-600 font-medium'>{susi + 1}</td>
                                 <td className='w-56'>{items.name}</td>
                                 <td><img className='w-28 mx-auto h-24 rounded-md' src={items.image} alt="" /></td>
                                 <td>${items.price}.00</td>
                                 <td>{items.quantity}</td>
-                                <td className='w-72'>{items.description.length>100?items.description.slice(0,100)+" ...":items.description}</td>
+                                <td className='w-72'>{items.description.length > 100 ? items.description.slice(0, 100) + " ..." : items.description}</td>
                                 <td className='justify-center flex items-center h-28 space-x-2'>
                                     <input type="checkbox" hidden id={items._id} className='okdi2' />
                                     <label htmlFor={items._id} onClick={() => UpdatePr1(items)} className='p-2 non-selectable cursor-pointer text-white rounded-full bg-green-400 hover:scale-110 active:scale-100'><FcSettings /></label>
@@ -106,13 +111,13 @@ const Management = () => {
                                         <p className='text-center text-white text-lg'><span className='bg-gray-700 text-xl rounded-b-xl pr-4 pl-4 pb-1'>Update product new</span></p>
                                         <form onSubmit={() => UpdatePr2(event)} className='mt-5'>
                                             <p className='ml-3'>Name:</p>
-                                            <input type="text" defaultValue={items.name} name='name' onChange={() => HandleChangeUpdate(event)} className='outline-0 shadow-inner shadow-gray-400 p-1 ml-1 w-[360px]' />
+                                            <input type="text" defaultValue={items.name} maxLength={20} name='name' onChange={() => HandleChangeUpdate(event)} className='outline-0 shadow-inner shadow-gray-400 p-1 ml-1 w-[360px]' />
                                             <p className='ml-3'>Image:<span className='picsumText text-red-500'>(default choose image of picsum)</span></p>
-                                            <input type="file"  name='image' className='p-1 inPutImage ml-1  w-[360px]' />
+                                            <input type="file" name='image' className='p-1 inPutImage ml-1  w-[360px]' />
                                             <p className='ml-3'>Price:</p>
-                                            <input type="number" defaultValue={items.price} name='price' onChange={() => HandleChangeUpdate(event)} className='outline-0 shadow-inner shadow-gray-400 p-1 ml-1 w-[360px]' />
+                                            <input type="number" defaultValue={items.price} maxLength={5} name='price' onChange={() => HandleChangeUpdate(event)} className='outline-0 shadow-inner shadow-gray-400 p-1 ml-1 w-[360px]' />
                                             <p className='ml-3'>Quantity:</p>
-                                            <input type="number" defaultValue={items.quantity} name='quantity' onChange={() => HandleChangeUpdate(event)} className='outline-0 shadow-inner shadow-gray-400 p-1 ml-1 w-[360px]' />
+                                            <input type="number" defaultValue={items.quantity} maxLength={5} name='quantity' onChange={() => HandleChangeUpdate(event)} className='outline-0 shadow-inner shadow-gray-400 p-1 ml-1 w-[360px]' />
                                             <p className='ml-3'>Description:</p>
                                             <textarea name='description' defaultValue={items.description} onChange={() => HandleChangeUpdate(event)} className='outline-0 shadow-inner shadow-gray-400 p-1 ml-1 w-[360px] h-28'></textarea>
 

@@ -9,16 +9,19 @@ const Home = () => {
     const { products, isLoading, error } = useAppSelector((state: any) => state.products);
 
     return (
-        <div className=''>
-            <div className="w-40 ml-[10%]">
+        <div className='non-selectable'>
+            <div className="w-40 ml-[10%] pt-5">
                 <Link to={`management`}>
-                    <button className='w-40 mt-5 shadow-lg pt-2 flex justify-center pb-2 shadow-gray-600 rounded-full p-1 active:translate-y-[-3px] active:scale-90 text-gray-200 management text-center font-bold text-2xl'>
+                    <button className='w-40 shadow-lg pt-2 flex justify-center pb-2 shadow-gray-600 rounded-full p-1 active:translate-y-[-3px] active:scale-90 text-gray-200 management text-center font-bold text-2xl'>
                         <span className=''><VscSettings /></span>
                     </button>
                 </Link>
             </div>
-            <div className="w-[90vw] mx-auto mt-7 non-selectable">
-                <p className='text-center text-gray-600 font-bold text-4xl '>Collection to about science books</p>
+            {/* <div className="w-[100vw] h-16 navbar flex">
+                <img className='w-16' src="../../kisspng-book-clip-art-vector-books-5aa7e4180d5d73.8052949015209523440548.png" alt="" />
+            </div> */}
+            <p className='text-center text-gray-600 font-bold text-4xl pt-10'>Collection to about science books</p>
+            <div className="w-[90vw] mx-auto pt-[42px] pb-5">
                 <div className="flex justify-center flex-wrap space-x-5">
                     {products?.map((items: any) => (
                         <div className=" text-black m-5 w-[180px] h-[244px] bg-gray-100 rounded-md" key={items._id}>
@@ -57,6 +60,7 @@ const Home = () => {
                             </div>
                         </div>
                     ))}
+                    
                 </div>
             </div>
         </div>
